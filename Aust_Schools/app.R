@@ -65,8 +65,11 @@ server <- function(input, output) {
             addLayersControl(baseGroups = c("OSM", "Carto", "Esri"), position = "topleft") %>% 
             addLegend(position = "bottomright", pal = pal,
                       values = c("Primary", "Combined", "Special", "Secondary")) 
-        
+    
     })
+    
+    # Create a datatable to display data
+    output$table <- DT::renderDataTable({schools})
 }
 
 # Run the application 
