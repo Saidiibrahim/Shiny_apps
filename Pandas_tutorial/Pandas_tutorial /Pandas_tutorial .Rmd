@@ -1,5 +1,5 @@
 ---
-title: "Coding Interview Questions in Python"
+title: "Python Data Science Toolbox"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -10,17 +10,26 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## Data Structures and String Manipulation
+## Writing Functions in Python
 
-### Exercise 1 
+Complete the code to return the output:
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+```{python two-plus-two, exercise=TRUE}
+import pandas
+import feather
 
-Write the R code required to add two plus two:
+# Read flights data and select flights to O'Hare
+flights = pandas.read_csv("flights.csv")
+flights = flights[flights['dest'] == "ORD"]
 
-```{r two-plus-two, exercise=TRUE}
+# Select carrier and delay columns and drop rows with missing values
+flights = flights[['carrier', 'dep_delay', 'arr_delay']]
+flights = flights.dropna()
+print flights.head(10)
 
-```
+# Write to feather file for reading from R
+feather.write_dataframe(flights, "flights.feather")
+``` 
 
 ### Exercise with Code
 
@@ -29,9 +38,7 @@ Write the R code required to add two plus two:
 Now write a function that adds any two numbers and then call it:
 
 ```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
+
 ```
 
 ## Topic 2
